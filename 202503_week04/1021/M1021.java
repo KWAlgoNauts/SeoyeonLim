@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class M1021 {
     public static void main(String[] args) throws IOException {
         //회전을 하는 거니깐 나눗셈 정리도 한 번 생각해볼것
         //2번, 3번의 연산의 최솟값

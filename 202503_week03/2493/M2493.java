@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class M2493 {
     public static void main(String[] args) throws IOException {
         // 빠른 입력을 위해 BufferedReader 사용
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

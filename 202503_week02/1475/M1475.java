@@ -1,10 +1,8 @@
-import com.sun.jdi.request.ExceptionRequest;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class M1475 {
     private static void checkingFor6or9(int[] arr, int dig){
         if(arr[6] <= arr[9]){
             arr[6]++;
