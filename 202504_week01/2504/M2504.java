@@ -47,7 +47,7 @@ public class M2504{
                 }
             }
         }
-        if(error){
+        if(error || !stack.isEmpty()){
             System.out.println(0);
         }else{
             System.out.println(answer);
