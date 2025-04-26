@@ -14,36 +14,42 @@ public class M2206 {
             {0, 1}
     };
 
-    private static int bfs() {
-        queue.add(new int[]{0, 0, 0, 1}); // (x, y, broken, distance)
+    private static int bfs(){
+        queue.add(new int[]{0, 0, 0}); // x, y, broken
         visited[0][0][0] = true;
+        int path = 1;
 
-        while (!queue.isEmpty()) {
-            int[] cur = queue.poll();
-            int x = cur[0];
-            int y = cur[1];
-            int broken = cur[2];
-            int dist = cur[3];
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] cur = queue.poll();
+                int x = cur[0];
+                int y = cur[1];
+                int broken = cur[2];
 
-            if (x == N - 1 && y == M - 1) {
-                return dist;
-            }
+                if(x == (N -1) && y == (M - 1)){
+                    return path;
+                }
 
-            for (int u = 0; u < 4; u++) {
-                int nx = x + dir[u][0];
-                int ny = y + dir[u][1];
+                for(int u = 0; u < 4; u++){
+                    int nx = x + dir[u][0];
+                    int ny = y + dir[u][1];
 
-                if (nx >= 0 && nx < N && ny >= 0 && ny < M) {
-                    if (arr[nx][ny] == 0 && !visited[nx][ny][broken]) {
-                        visited[nx][ny][broken] = true;
-                        queue.add(new int[]{nx, ny, broken, dist + 1});
-                    } else if (arr[nx][ny] == 1 && broken == 0 && !visited[nx][ny][1]) {
-                        visited[nx][ny][1] = true;
-                        queue.add(new int[]{nx, ny, 1, dist + 1});
+                    if(nx >= 0 && nx < N && ny >= 0 && ny < M){
+                        if(arr[nx][ny] == 1 && broken == 0 && !visited[nx][ny][1]){
+                            queue.add(new int[]{nx, ny, 1});
+                            visited[nx][ny][1] = true;
+                        }
+                        else if(arr[nx][ny] == 0 && !visited[nx][ny][broken]){
+                            queue.add(new int[]{nx, ny, broken});
+                            visited[nx][ny][broken] = true;
+                        }
                     }
                 }
             }
+            path++;
         }
+
         return -1;
     }
 
