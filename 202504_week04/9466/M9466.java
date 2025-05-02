@@ -3,26 +3,26 @@ import java.util.*;
 
 public class M9466 {
     static int[] arr;
-    static boolean[] visited;
-    static boolean[] finished;
+    static boolean[] visited; //학생 방문 확인 용
+    static boolean[] finished; // 사이클에 판단 여부가 끝난 아이들
     static int nonTeamone = 0;
 
     private static void bfs(int start) {
-        Queue<Integer> queue = new LinkedList<>();
-        List<Integer> path = new ArrayList<>();
+        //이어져 있는 애들을 탐색해야하니깐
+        Queue<Integer> queue = new LinkedList<>(); //탐색할 학생 번호 담는 큐
+        //이번 탐색에서 사이클이 형성 됐을 수도 있으니깐
+        List<Integer> path = new ArrayList<>(); //방문한 학생들 기록하는 리스트
 
-        queue.add(start);
-        path.add(start);
-        visited[start] = true;
+        queue.add(start); // 큐에 탐색할 애 넣기
+        path.add(start); // 사이클에 포함하기
 
         while (!queue.isEmpty()) {
-            int cur = queue.poll();
-            int next = arr[cur];
+            int cur = queue.poll(); //
+            int next = arr[cur]; //
 
-            if (!visited[next]) {
-                visited[next] = true;
-                queue.add(next);
-                path.add(next);
+            //finish
+            if(!finished[next]) {
+                return;
             } else {
                 // next를 이미 방문했을 때
                 if (!finished[next]) {
@@ -64,7 +64,8 @@ public class M9466 {
             }
 
             for (int i = 1; i <= n; i++) {
-                if (!visited[i]) {
+                //판단되지 않은 숫자다 하면 bfs
+                if (!finished[i]) {
                     bfs(i);
                 }
             }
