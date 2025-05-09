@@ -26,7 +26,7 @@ public class M13549 {
 
             //곱하려고 할 때 그게 이득인지를 보는 거임.
             if (Math.abs(sister - pos) > Math.abs(2*pos - sister)
-                    && pos *2 <=100000) {
+                    && pos *2 <=100000 ) {
                 queue.offerFirst(new int[]{pos * 2, dis});
                 visited[pos * 2] = true;
             }
