@@ -57,8 +57,6 @@ public class M2630 {
             }
         }
 
-        int n = N/2;
-
         cut(0,0,N);
 
         System.out.println(answer[0]);
