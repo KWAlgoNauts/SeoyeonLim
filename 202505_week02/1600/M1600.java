@@ -76,10 +76,13 @@ public class M1600 {
                 monkey(row, col, dis,  false);
             }
             //만약 썼다면
-            if(visited[row][col][1]){
+            {
                 monkey(row, col, dis,  true);
             }
         }
+
+        System.out.println(-1);
+        return;
     }
 
     public static void main(String[] args) throws IOException{
@@ -104,7 +107,7 @@ public class M1600 {
         //가지 않는 경우가 있어야할 것 같음
         //전처럼 bfs로 하는
         queue = new LinkedList<>();
-        visited = new boolean[H][W][2]; //0,0 에서 0은 아직 k를 안 쓴 것
+        visited = new boolean[H][W][k]; //0,0 에서 0은 아직 k를 안 쓴 것
 
         queue.add(new int[]{0,0,0});//dis 얘가 거리라고 치자.
         visited[0][0][0] = true;
