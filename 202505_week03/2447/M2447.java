@@ -4,14 +4,15 @@ import java.util.*;
 public class M2447 {
     static int N;
     static char theFirst = '*';
+    static StringBuilder sb;
 
     private static void printing(int i, int j, int N){
         if((i/N)%3 == 1 && (j/N)%3 == 1){
-            System.out.print(' ');
+            sb.append(' ');
         }else{
             //N/3 == 1  이상이라는건, 아직 찍어질게 남아있다는 의미
             if(N/3 == 0){
-                System.out.print(theFirst);
+                sb.append(theFirst);
             }else{
                 printing(i,j, N/3);
             }
@@ -19,6 +20,8 @@ public class M2447 {
     }
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        sb = new StringBuilder();
+
         N = Integer.parseInt(br.readLine());
 
         // 처음에 세번 반복
@@ -29,8 +32,9 @@ public class M2447 {
                 printing(i,j, N/3);
             }
 
-            System.out.print('\n');
+            sb.append('\n');
         }
 
+        System.out.print(sb);
     }
 }
