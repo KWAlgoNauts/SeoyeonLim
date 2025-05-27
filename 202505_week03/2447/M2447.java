@@ -1,50 +1,36 @@
 import java.io.*;
+import java.util.*;
 
 public class M2447 {
     static int N;
-    static StringBuilder sb = new StringBuilder();
-    static char[][] answer;
+    static char theFirst = '*';
 
-    public static void main(String[] args) throws IOException {
+    private static void printing(int i, int j, int N){
+        if((i/N)%3 == 1 && (j/N)%3 == 1){
+            System.out.print(' ');
+        }else{
+            //N/3 == 1  이상이라는건, 아직 찍어질게 남아있다는 의미
+            if(N/3 == 0){
+                System.out.print(theFirst);
+            }else{
+                printing(i,j, N/3);
+            }
+        }
+    }
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
-        answer = new char[N][N];
 
-        draw(0, 0, N, false);
-
-        for (int i = 0; i < N; i++) {
-            sb.append(answer[i]).append('\n');
-        }
-        System.out.print(sb);
-    }
-
-    private static void draw(int x, int y, int size, boolean isBlank) {
-        if (isBlank) {
-            for (int i = x; i < x + size; i++) {
-                for (int j = y; j < y + size; j++) {
-                    answer[i][j] = ' ';
-                }
+        // 처음에 세번 반복
+        // 1번과 3번 반복
+        // 다시 세번 반복
+        for(int i = 0; i<N; i++){
+            for(int j =0; j<N; j++){
+                printing(i,j, N/3);
             }
-            return;
+
+            System.out.print('\n');
         }
 
-        if (size == 1) {
-            answer[x][y] = '*';
-            return;
-        }
-
-        int newSize = size / 3;
-        int count = 0;
-        for (int i = x; i < x + size; i += newSize) {
-            for (int j = y; j < y + size; j += newSize) {
-                count++;
-                // 가운데면 공백
-                if (count == 5) {
-                    draw(i, j, newSize, true);
-                } else {
-                    draw(i, j, newSize, false);
-                }
-            }
-        }
     }
 }
